@@ -17,7 +17,6 @@ pipelineProperties(numToKeep: 15)
 timestamps {
     node(label: 'NODE_JS_BUILDER') {
         stage('Checkout Git Repo') {
-            branch: 'influx',
             url: 'https://github.com/advait012/gauge-wdio-x-browser-test.git'
         }
         stage('Install') {
