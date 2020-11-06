@@ -1,0 +1,50 @@
+/**
+ * This Pipeline script is used to run the post deploy jobs in gauge-wdio-x-browser
+ *
+ * NOTE: Any changes to this file will impact the above mentioned jobs, so make changes wisely.
+ */
+
+ library "sparkPipeline"
+
+ /**
+ * sparkPipeline constructs a typical spark pipeline. Many options are available to alter the pipeline.
+ * For documentation and a list of options, see:
+ *     https://sqbu-github.cisco.com/WebExSquared/pipeline/blob/master/vars/sparkPipeline.txt
+ */
+
+pipelineProperties(numToKeep: 15)
+
+timestamps {
+    node(label: 'NODE_JS_BUILDER') {
+        stage('Checkout Git Repo') {
+             {
+            branch: 'master',
+            url: 'https://github.com/advait012/gauge-wdio-x-browser-test.git'
+          }
+        }
+        stage('Install') {
+            sh './bin/install.sh'
+        }
+        stage('Run tests') {
+            {
+                ansiColor('xterm') {
+                    try {
+                        script = "./bin/gauge-tests.sh --headless"
+                        sh "./bin/run.sh  ${script}"
+                        currentBuild.result = 'SUCCESS'
+                    }
+                    catch(err) {
+                        currentBuild.result = 'FAILURE'
+                    }
+                }
+            }
+        }
+        
+        stage('PublishResultToInflux') {
+            step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'grafana'])
+        }
+        stage('Clean Workspace') {
+            cleanWs notFailBuild: true
+        }
+    }
+}
