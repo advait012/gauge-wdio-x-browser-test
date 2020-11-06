@@ -23,7 +23,6 @@ timestamps {
             sh './bin/install.sh'
         }
         stage('Run tests') {
-            {
                 ansiColor('xterm') {
                     try {
                         script = "./bin/gauge-tests.sh --headless"
@@ -34,7 +33,6 @@ timestamps {
                         currentBuild.result = 'FAILURE'
                     }
                 }
-            }
         }
         
         stage('PublishResultToInflux') {
