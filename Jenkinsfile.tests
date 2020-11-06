@@ -41,7 +41,7 @@ timestamps {
         }
         
         stage('PublishResultToInflux') {
-            step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'grafana'])
+            step([$class: 'InfluxDbPublisher', customData: null, customDataMap: null, customPrefix: null, target: 'metric'])
         }
         stage('Clean Workspace') {
             cleanWs notFailBuild: true
