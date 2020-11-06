@@ -2,6 +2,7 @@
  * This Pipeline script is used to run the post deploy jobs in gauge-wdio-x-browser
  *
  * NOTE: Any changes to this file will impact the above mentioned jobs, so make changes wisely.
+ */
 
 pipelineProperties(numToKeep: 15)
 
