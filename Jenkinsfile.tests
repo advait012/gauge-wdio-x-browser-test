@@ -2,15 +2,6 @@
  * This Pipeline script is used to run the post deploy jobs in gauge-wdio-x-browser
  *
  * NOTE: Any changes to this file will impact the above mentioned jobs, so make changes wisely.
- */
-
- library "sparkPipeline"
-
- /**
- * sparkPipeline constructs a typical spark pipeline. Many options are available to alter the pipeline.
- * For documentation and a list of options, see:
- *     https://sqbu-github.cisco.com/WebExSquared/pipeline/blob/master/vars/sparkPipeline.txt
- */
 
 pipelineProperties(numToKeep: 15)
 
