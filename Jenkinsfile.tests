@@ -4,8 +4,6 @@
  * NOTE: Any changes to this file will impact the above mentioned jobs, so make changes wisely.
  */
 
-pipelineProperties(numToKeep: 15)
-
 timestamps {
     node(label: 'NODE_JS_BUILDER') {
         stage('Checkout Git Repo') {
