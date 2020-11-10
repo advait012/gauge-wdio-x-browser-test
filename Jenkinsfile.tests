@@ -5,7 +5,7 @@
  */
 
 timestamps {
-    node(label: 'NODE_JS_BUILDER') {
+    node(label: 'master') {
         stage('Checkout Git Repo') {
             url: 'https://github.com/advait012/gauge-wdio-x-browser-test.git'
         }
