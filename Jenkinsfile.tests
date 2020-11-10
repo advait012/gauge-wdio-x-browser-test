@@ -10,19 +10,17 @@ timestamps {
             url: 'https://github.com/advait012/gauge-wdio-x-browser-test.git'
         }
         stage('Install') {
-            sh './bin/install.sh'
+            sh 'C:/Users/advsharm/Documents/gauge-wdio-x-browser-test/bin/install.sh'
         }
         stage('Run tests') {
-                ansiColor('xterm') {
                     try {
-                        script = "./bin/gauge-tests.sh --headless"
-                        sh "./bin/run.sh  ${script}"
+                        script = "C:/Users/advsharm/Documents/gauge-wdio-x-browser-test/bin/gauge-tests.sh --headless"
+                        sh "C:/Users/advsharm/Documents/gauge-wdio-x-browser-test/bin/run.sh  ${script}"
                         currentBuild.result = 'SUCCESS'
                     }
                     catch(err) {
                         currentBuild.result = 'FAILURE'
                     }
-                }
         }
         
         stage('PublishResultToInflux') {
